@@ -1,10 +1,10 @@
-# Backend ignores
-backend/node_modules/
-backend/.env
+# BACKEND ignores
+BACKEND/node_modules/
+BACKEND/.env
 
-# Frontend ignores (if any)
-frontend/node_modules/
-frontend/.env
+# FRONTEND ignores (if any)
+FRONTEND/node_modules/
+FRONTEND/.env
 
 # General ignores
 node_modules/
