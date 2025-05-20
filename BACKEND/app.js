@@ -98,6 +98,9 @@ app.delete('/books/:id', async (req, res) => {
 });
 
 // Start the server
-app.listen(9000, () => {
-    console.log('Server is running on port 9000');
+
+const PORT = 8010;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
