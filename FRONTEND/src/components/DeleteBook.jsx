@@ -10,7 +10,7 @@ const DeleteBook = () => {
 
   const fetchBooks = async () => {
     try {
-      const res = await axios.get('https://bookstore-8f2m.onrender.com/books');
+      const res = await axios.get('https://book-store-backend-smid.onrender.com');
       setBooks(res.data);
     } catch (error) {
       console.error(error);
@@ -23,7 +23,7 @@ const DeleteBook = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`https://bookstore-8f2m.onrender.com/books/${id}`);
+      await axios.delete(`https://book-store-backend-smid.onrender.com/${id}`);
       alert('Book deleted successfully');
       fetchBooks();
     } catch (error) {
