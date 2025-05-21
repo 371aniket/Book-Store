@@ -10,7 +10,7 @@ const ViewBook = () => {
 
   const handleView = async () => {
     try {
-      const res = await axios.get('https://bookstore-8f2m.onrender.com/books');
+      const res = await axios.get('https://book-store-backend-smid.onrender.com');
       setBooks(res.data);
     } catch (err) {
       console.error('Error fetching books:', err);
