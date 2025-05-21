@@ -7,7 +7,12 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+// Node.js/Express with CORS
+app.use(cors({
+  origin: 'https://book-store-frontend-nidc.onrender.com',
+  credentials: true
+}));
+
 
 // Connect to MongoDB
 mongoose
