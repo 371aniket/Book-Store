@@ -13,7 +13,7 @@ const AddBook = () => {
     const book = { title, author, date, image };
 
     try {
-      await axios.post('https://book-store-backend-smid.onrender.com', book);
+      await axios.post('https://book-store-backend-smid.onrender.com/books', book);
       alert('Book Added Successfully');
       e.target.reset(); // clear form
     } catch (error) {
