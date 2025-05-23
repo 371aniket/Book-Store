@@ -18,7 +18,6 @@ const UpdateBook = () => {
     const fetchBook = async () => {
       try {
         const res = await axios.get(`https://book-store-backend-smid.onrender.com/books/${id}`);
-
         setBook(res.data);
       } catch (error) {
         console.error("Error fetching book:", error);
@@ -34,9 +33,8 @@ const UpdateBook = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    try 
+    try {
       await axios.put(`https://book-store-backend-smid.onrender.com/books/${id}`, book);
-
       alert("Book updated successfully");
       navigate("/"); // redirect to home or book list
     } catch (error) {
