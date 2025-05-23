@@ -17,7 +17,7 @@ const UpdateBook = () => {
     // fetch book details
     const fetchBook = async () => {
       try {
-        const res = axios.get(`https://book-store-backend-smid.onrender.com/books/${id}`);
+        const res = await axios.get(`https://book-store-backend-smid.onrender.com/books/${id}`);
 
         setBook(res.data);
       } catch (error) {
