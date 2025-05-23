@@ -23,26 +23,44 @@ const AddBook = () => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto' }}>
-      <h1>Add Book</h1>
+    <div
+      style={{
+        maxWidth: '500px',
+        margin: 'auto',
+        background: 'rgba(255, 255, 255, 0.95)',
+        padding: '30px',
+        borderRadius: '12px',
+        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      <h2 className="text-center text-primary mb-4">📚 Add a New Book</h2>
       <form onSubmit={handleBook}>
-        <div>
-          <label>Title:</label><br />
-          <input type="text" name="title" required />
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label fw-semibold">Title</label>
+          <input type="text" name="title" className="form-control" placeholder="Enter book title" required />
         </div>
-        <div>
-          <label>Author:</label><br />
-          <input type="text" name="author" required />
+        <div className="mb-3">
+          <label htmlFor="author" className="form-label fw-semibold">Author</label>
+          <input type="text" name="author" className="form-control" placeholder="Enter author's name" required />
         </div>
-        <div>
-          <label>Date:</label><br />
-          <input type="date" name="date" required />
+        <div className="mb-3">
+          <label htmlFor="date" className="form-label fw-semibold">Publication Date</label>
+          <input type="date" name="date" className="form-control" required />
         </div>
-        <div>
-          <label>Image URL:</label><br />
-          <input type="text" name="image" required />
+        <div className="mb-4">
+          <label htmlFor="image" className="form-label fw-semibold">Image URL</label>
+          <input type="text" name="image" className="form-control" placeholder="Enter image link" required />
         </div>
-        <button type="submit" style={{ marginTop: '10px' }}>
+        <button
+          type="submit"
+          className="btn btn-primary w-100"
+          style={{
+            padding: '10px',
+            fontWeight: 'bold',
+            fontSize: '16px',
+            borderRadius: '8px',
+          }}
+        >
           Add Book
         </button>
       </form>

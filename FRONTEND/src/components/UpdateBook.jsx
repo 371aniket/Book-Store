@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 const UpdateBook = () => {
-  const { id } = useParams(); // book ID from route
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [book, setBook] = useState({
@@ -14,7 +14,6 @@ const UpdateBook = () => {
   });
 
   useEffect(() => {
-    // fetch book details
     const fetchBook = async () => {
       try {
         const res = await axios.get(`https://book-store-backend-smid.onrender.com/books/${id}`);
@@ -36,7 +35,7 @@ const UpdateBook = () => {
     try {
       await axios.put(`https://book-store-backend-smid.onrender.com/books/${id}`, book);
       alert("Book updated successfully");
-      navigate("/"); // redirect to home or book list
+      navigate("/");
     } catch (error) {
       console.error("Error updating book:", error);
       alert("Failed to update book");
@@ -44,50 +43,100 @@ const UpdateBook = () => {
   };
 
   return (
-    <div style={{ maxWidth: "500px", margin: "auto" }}>
-      <h1>Update Book</h1>
-      <form onSubmit={handleUpdate}>
+    <div
+      style={{
+        maxWidth: "600px",
+        margin: "40px auto",
+        padding: "30px",
+        background: "linear-gradient(135deg, #d0e2ff, #e6ccff)",
+        borderRadius: "16px",
+        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)"
+      }}
+    >
+      <h2 className="text-center" style={{ color: "#2c3e50", marginBottom: "20px" }}>✏️ Update Book</h2>
+      <form onSubmit={handleUpdate} style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
         <div>
-          <label>Title:</label><br />
+          <label><strong>Title:</strong></label><br />
           <input
             type="text"
             name="title"
             value={book.title}
             onChange={handleChange}
             required
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "8px",
+              border: "1px solid #ccc"
+            }}
           />
         </div>
         <div>
-          <label>Author:</label><br />
+          <label><strong>Author:</strong></label><br />
           <input
             type="text"
             name="author"
             value={book.author}
             onChange={handleChange}
             required
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "8px",
+              border: "1px solid #ccc"
+            }}
           />
         </div>
         <div>
-          <label>Date:</label><br />
+          <label><strong>Date:</strong></label><br />
           <input
             type="date"
             name="date"
             value={book.date}
             onChange={handleChange}
             required
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "8px",
+              border: "1px solid #ccc"
+            }}
           />
         </div>
         <div>
-          <label>Image URL:</label><br />
+          <label><strong>Image URL:</strong></label><br />
           <input
             type="text"
             name="image"
             value={book.image}
             onChange={handleChange}
             required
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "8px",
+              border: "1px solid #ccc"
+            }}
           />
         </div>
-        <button type="submit" style={{ marginTop: "10px" }}>Update</button>
+        <button
+          type="submit"
+          style={{
+            marginTop: "10px",
+            padding: "10px 20px",
+            backgroundColor: "#6a0dad",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: "bold",
+            transition: "background 0.3s ease"
+          }}
+          onMouseOver={(e) => (e.target.style.backgroundColor = "#5300a5")}
+          onMouseOut={(e) => (e.target.style.backgroundColor = "#6a0dad")}
+        >
+          Update
+        </button>
       </form>
     </div>
   );

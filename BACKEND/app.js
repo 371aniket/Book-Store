@@ -10,6 +10,7 @@ app.use(express.json());
 // Node.js/Express with CORS
 app.use(cors({
   origin: 'https://book-store-frontend-nidc.onrender.com',
+
   credentials: true
 }));
 
