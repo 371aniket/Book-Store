@@ -13,7 +13,7 @@ const SearchBook = () => {
     }
 
     try {
-      const res = await axios.get(`https://book-store-backend-smid.onrender.com?title=${query}`);
+      const res = await axios.get(`https://book-store-backend-smid.onrender.com/search?title=${query}`);
       setBooks(res.data);
       setSearched(true);
     } catch (error) {
