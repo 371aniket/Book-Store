@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddBook = () => {
+  const navigate = useNavigate();
+
   const handleBook = async (e) => {
     e.preventDefault();
 
@@ -13,7 +16,7 @@ const AddBook = () => {
     const book = { title, author, date, image };
 
     try {
-      await axios.post('https://book-store-backend-smid.onrender.com/books', book);
+      await axios.post('http://localhost:8010/books', book);
       alert('Book Added Successfully');
       e.target.reset(); // clear form
     } catch (error) {
