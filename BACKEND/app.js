@@ -136,7 +136,17 @@ const BookSchema = new mongoose.Schema({
     title: String,
     author: String,
     date: String,
-    image: String
+    image: String,
+    price: {
+        type: Number,
+        required: true,
+        min: 0
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
 }, { timestamps: true });
 
 // Book Model
@@ -145,7 +155,10 @@ const Book = mongoose.model('MyBook', BookSchema);
 // Create a new book
 app.post('/books', auth, async (req, res) => {
     try {
-        const NewBook = new Book(req.body);
+        const NewBook = new Book({
+            ...req.body,
+            user: req.user._id
+        });
         await NewBook.save();
         res.status(201).json(NewBook);
     } catch (error) {
@@ -154,10 +167,10 @@ app.post('/books', auth, async (req, res) => {
     }
 });
 
-// Get all books
+// Get all books for the authenticated user
 app.get('/books', auth, async (req, res) => {
     try {
-        const books = await Book.find();
+        const books = await Book.find({ user: req.user._id });
         res.json(books);
     } catch (error) {
         console.error(error);
@@ -165,10 +178,13 @@ app.get('/books', auth, async (req, res) => {
     }
 });
 
-// Get a book by ID
+// Get a book by ID (only if it belongs to the user)
 app.get('/books/:id', auth, async (req, res) => {
     try {
-        const book = await Book.findById(req.params.id);
+        const book = await Book.findOne({
+            _id: req.params.id,
+            user: req.user._id
+        });
         if (!book) return res.status(404).send('Book Not Found');
         res.json(book);
     } catch (error) {
@@ -177,11 +193,14 @@ app.get('/books/:id', auth, async (req, res) => {
     }
 });
 
-// Search books by title
+// Search books (only for the authenticated user)
 app.get('/search', auth, async (req, res) => {
     const { title } = req.query;
     try {
-        const books = await Book.find({ title: { $regex: title, $options: 'i' } }); // case-insensitive
+        const books = await Book.find({
+            title: { $regex: title, $options: 'i' },
+            user: req.user._id
+        });
         res.json(books);
     } catch (error) {
         console.error(error);
@@ -189,10 +208,14 @@ app.get('/search', auth, async (req, res) => {
     }
 });
 
-// Update a book by ID
+// Update a book by ID (only if it belongs to the user)
 app.put('/books/:id', auth, async (req, res) => {
     try {
-        const book = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const book = await Book.findOneAndUpdate(
+            { _id: req.params.id, user: req.user._id },
+            req.body,
+            { new: true }
+        );
         if (!book) return res.status(404).send('Book Not Found');
         res.json(book);
     } catch (error) {
@@ -201,10 +224,13 @@ app.put('/books/:id', auth, async (req, res) => {
     }
 });
 
-// DELETE a book by ID
+// DELETE a book by ID (only if it belongs to the user)
 app.delete('/books/:id', auth, async (req, res) => {
     try {
-        const book = await Book.findByIdAndDelete(req.params.id);
+        const book = await Book.findOneAndDelete({
+            _id: req.params.id,
+            user: req.user._id
+        });
         if (!book) return res.status(404).send('Book Not Found');
         res.json({ message: 'Book deleted successfully', book });
     } catch (error) {

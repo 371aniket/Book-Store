@@ -177,12 +177,57 @@ const App = () => {
                 path="/"
                 element={
                   <div className="text-center py-5">
-                    <h1 className="display-4 text-primary mb-3">Welcome to the Book Store</h1>
-                    <p className="lead text-muted">
-                      {isAuthenticated
-                        ? `Hello, ${user?.username}! Manage your books easily with our intuitive interface.`
-                        : "Please login or register to manage your books."}
-                    </p>
+                    <h1 className="display-4 text-primary mb-4">Welcome to Your Digital Book Haven</h1>
+                    <div className="row justify-content-center">
+                      <div className="col-md-8">
+                        <p className="lead text-muted mb-4">
+                          {isAuthenticated
+                            ? `Hello, ${user?.username}! Welcome back to your personal book collection.`
+                            : "Discover, manage, and organize your book collection with our intuitive platform."}
+                        </p>
+                        <div className="features-grid mt-5">
+                          <div className="row g-4">
+                            <div className="col-md-4">
+                              <div className="feature-card p-3">
+                                <h3 className="h5 mb-3">📚 Extensive Collection</h3>
+                                <p className="small text-muted">Access and manage your entire book collection in one place</p>
+                              </div>
+                            </div>
+                            <div className="col-md-4">
+                              <div className="feature-card p-3">
+                                <h3 className="h5 mb-3">🔍 Smart Search</h3>
+                                <p className="small text-muted">Find any book instantly with our powerful search feature</p>
+                              </div>
+                            </div>
+                            <div className="col-md-4">
+                              <div className="feature-card p-3">
+                                <h3 className="h5 mb-3">📱 Easy Management</h3>
+                                <p className="small text-muted">Add, update, or remove books with just a few clicks</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {!isAuthenticated && (
+                          <div className="mt-5">
+                            <p className="text-muted mb-3">Get started by creating your account or logging in</p>
+                            <div className="d-flex gap-3 justify-content-center">
+                              <NavLink
+                                to="/register"
+                                className="btn btn-primary px-4 py-2"
+                              >
+                                Create Account
+                              </NavLink>
+                              <NavLink
+                                to="/login"
+                                className="btn btn-outline-primary px-4 py-2"
+                              >
+                                Login
+                              </NavLink>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 }
               />

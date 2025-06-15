@@ -12,8 +12,9 @@ const AddBook = () => {
     const author = e.target.author.value;
     const date = e.target.date.value;
     const image = e.target.image.value;
+    const price = parseFloat(e.target.price.value);
 
-    const book = { title, author, date, image };
+    const book = { title, author, date, image, price };
 
     try {
       await axios.post('http://localhost:8010/books', book);
@@ -45,6 +46,18 @@ const AddBook = () => {
         <div className="mb-3">
           <label htmlFor="author" className="form-label fw-semibold">Author</label>
           <input type="text" name="author" className="form-control" placeholder="Enter author's name" required />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="price" className="form-label fw-semibold">Price ($)</label>
+          <input
+            type="number"
+            name="price"
+            className="form-control"
+            placeholder="Enter book price"
+            step="0.01"
+            min="0"
+            required
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="date" className="form-label fw-semibold">Publication Date</label>
